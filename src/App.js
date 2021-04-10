@@ -1,13 +1,16 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import AppProvider from './provider/AppProvider';
+import NotificationProvider from './provider/NotificationProvider';
 import { Route } from './navigation';
 
 export default function App() {
 	return (
 		<AppProvider>
-			<Route />
-			<StatusBar style="auto" />
+			<NotificationProvider>
+				<Route />
+				<StatusBar style="auto" />
+			</NotificationProvider>
 		</AppProvider>
 	);
 }

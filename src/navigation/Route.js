@@ -1,42 +1,14 @@
-import React, { useContext, useEffect, useRef } from 'react';
-
-import * as Notifications from 'expo-notifications';
-import { registerForPushNotificationsAsync } from '../notifications/setup';
-
-import { AppContext } from '../provider/AppProvider';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen } from '../screens';
+import { AuthScreen, HomeScreen } from '../screens';
+import { AppContext } from '../provider/AppProvider';
 
 const Route = () => {
-	const { setPushToken } = useContext(AppContext);
-	const notificationListener = useRef();
-	const responseListener = useRef();
-
-	useEffect(() => {
-		registerForPushNotificationsAsync().then((token) => setPushToken(token));
-
-		notificationListener.current = Notifications.addNotificationReceivedListener(
-			(notification) => {
-				// setNotification(notification);
-				console.log({ notification });
-			}
-		);
-
-		responseListener.current = Notifications.addNotificationResponseReceivedListener(
-			(response) => {
-				alert(JSON.stringify(response));
-			}
-		);
-
-		return () => {
-			Notifications.removeNotificationSubscription(notificationListener);
-			Notifications.removeNotificationSubscription(responseListener);
-		};
-	}, []);
+	const { user } = useContext(AppContext);
 
 	return (
 		<NavigationContainer>
-			<HomeScreen />
+			{user && Object.keys(user).length > 0 ? <HomeScreen /> : <AuthScreen />}
 		</NavigationContainer>
 	);
 };

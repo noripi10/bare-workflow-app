@@ -13,11 +13,11 @@ import { Constants } from 'react-native-unimodules';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImageManipulator from 'expo-image-manipulator';
 
-import { AppContext } from '../provider/AppProvider';
+import { NotificationContent } from '../provider/NotificationProvider';
 import { useMediaPermission } from '../hooks/useMediaPermission';
 
 const HomeScreen = () => {
-	const { pushToken } = useContext(AppContext);
+	const { pushToken } = useContext(NotificationContent);
 	const [albums, setAlbums] = useState([]);
 	const [album, setAlbum] = useState({});
 	const [assets, setAssets] = useState([]);
