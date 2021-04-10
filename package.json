@@ -8,10 +8,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.4",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/native": "^5.9.4",
     "expo": "~40.0.0",
+    "expo-font": "^9.0.0",
     "expo-image-manipulator": "~8.4.0",
     "expo-media-library": "~10.0.0",
     "expo-notifications": "~0.8.2",

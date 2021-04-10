@@ -8,13 +8,13 @@ import {
 	TouchableOpacity,
 	StyleSheet,
 } from 'react-native';
-
 import { Constants } from 'react-native-unimodules';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImageManipulator from 'expo-image-manipulator';
 
 import { NotificationContent } from '../provider/NotificationProvider';
 import { useMediaPermission } from '../hooks/useMediaPermission';
+import { BackTile } from '../components';
 
 const HomeScreen = () => {
 	const { pushToken } = useContext(NotificationContent);
@@ -44,68 +44,69 @@ const HomeScreen = () => {
 	};
 
 	return (
-		<SafeAreaView style={styles.container}>
-			<View style={styles.headerContainer}>
-				<Text>{Constants.isDevice ? 'Real Device' : 'Not Real Device'}</Text>
-				<Text>{Constants.isDevice && pushToken}</Text>
-				<Text>MediaLibrary : {result.toString()}</Text>
-				<TouchableOpacity
-					style={styles.touchButton}
-					onPress={getAlbums}
-					disabled={!result}
-				>
-					<Text>Get Albums</Text>
-				</TouchableOpacity>
-			</View>
-			<View style={styles.middleContainer}>
-				<Text>{albums.length}</Text>
-				<FlatList
-					data={albums}
-					renderItem={({ item }) => (
-						<TouchableOpacity
-							key={item.title}
-							style={styles.item}
-							onPress={() => getAlbum(item.title)}
-						>
-							<Text>{item.title}</Text>
-						</TouchableOpacity>
-					)}
-					keyExtractor={(item, index) => item.id}
-				/>
-			</View>
-			<View style={styles.bottomContainer}>
-				<FlatList
-					data={assets}
-					renderItem={({ item }) => (
-						<View style={styles.assetItem}>
-							<Image
-								style={styles.image}
-								source={{ uri: item.uri }}
-								resizeMethod="resize"
-								resizeMode="cover"
-							/>
-						</View>
-					)}
-					numColumns={2}
-					keyExtractor={(item, index) => item.uri}
-				/>
-			</View>
-		</SafeAreaView>
+		<BackTile style={styles.container} colors={['#81ffef', '#f067b4']}>
+			<SafeAreaView style={{ flex: 1 }}>
+				<View style={styles.headerContainer}>
+					<Text>{Constants.isDevice ? 'Real Device' : 'Not Real Device'}</Text>
+					<Text>{Constants.isDevice && pushToken}</Text>
+					<Text>MediaLibrary : {result.toString()}</Text>
+					<TouchableOpacity
+						style={styles.touchButton}
+						onPress={getAlbums}
+						disabled={!result}
+					>
+						<Text>Get Albums</Text>
+					</TouchableOpacity>
+				</View>
+				<View style={styles.middleContainer}>
+					<Text>{albums.length}</Text>
+					<FlatList
+						data={albums}
+						renderItem={({ item }) => (
+							<TouchableOpacity
+								key={item.title}
+								style={styles.item}
+								onPress={() => getAlbum(item.title)}
+							>
+								<Text>{item.title}</Text>
+							</TouchableOpacity>
+						)}
+						keyExtractor={(item, index) => item.id}
+					/>
+				</View>
+				<View style={styles.bottomContainer}>
+					<FlatList
+						data={assets}
+						renderItem={({ item }) => (
+							<View style={styles.assetItem}>
+								<Image
+									style={styles.image}
+									source={{ uri: item.uri }}
+									resizeMethod="resize"
+									resizeMode="cover"
+								/>
+							</View>
+						)}
+						numColumns={2}
+						keyExtractor={(item, index) => item.uri}
+					/>
+				</View>
+			</SafeAreaView>
+		</BackTile>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'stretch',
+		alignItems: 'center',
 		justifyContent: 'flex-start',
-		marginTop: 35,
 	},
 	headerContainer: {
 		flex: 0.5,
 		justifyContent: 'center',
 		alignItems: 'center',
+		width: '100%',
 	},
 	middleContainer: {
 		flex: 1,

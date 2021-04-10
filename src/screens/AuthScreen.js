@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
-import { AppInput, AppButton } from '../components';
+import { AppInput, AppButton, BackTile } from '../components';
 import { AppContext } from '../provider/AppProvider';
 
 const AuthScreen = () => {
@@ -29,24 +28,21 @@ const AuthScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<LinearGradient
-				style={styles.linerGradient}
-				colors={['#5EFCE8', '#736EFE']}
-				start={{ x: 0, y: 0 }}
-				end={{ x: 1, y: 1 }}
-			>
-				<AppInput
-					title="ユーザーID"
-					onChangeText={changeUserId}
-					value={userId}
-				/>
-				<AppInput
-					title="パスワード"
-					onChangeText={changePassword}
-					value={password}
-				/>
-				<AppButton title="ログインする" onPress={authHandler} />
-			</LinearGradient>
+			<BackTile>
+				<View style={styles.form}>
+					<AppInput
+						title="ユーザーID"
+						onChangeText={changeUserId}
+						value={userId}
+					/>
+					<AppInput
+						title="パスワード"
+						onChangeText={changePassword}
+						value={password}
+					/>
+					<AppButton title="ログインする" onPress={authHandler} />
+				</View>
+			</BackTile>
 		</View>
 	);
 };
@@ -62,6 +58,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		width: '100%',
+	},
+	form: {
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });
 
