@@ -1,23 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { BackTile, AppButton } from '../components';
 import { AppContext } from '../provider/AppProvider';
+import { onSignOut } from '../libs/firebase';
 
 const UserScreen = () => {
-	const { user, setUser } = useContext(AppContext);
-
-	const logoutHandler = () => {
-		setUser({});
-	};
+	const { user } = useContext(AppContext);
 
 	return (
 		<BackTile style={styles.container} colors={['blue', 'yellow']}>
 			<View style={styles.form}>
-				<Text>{user.userId}</Text>
-				<Text>{user.password}</Text>
-				<AppButton title="ログアウト" onPress={logoutHandler} />
+				<Text>{JSON.stringify(user)}</Text>
+				<AppButton title="ログアウト" onPress={onSignOut} />
 			</View>
 		</BackTile>
 	);

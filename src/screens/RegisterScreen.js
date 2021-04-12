@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 
 import { AppInput, AppButton, BackTile } from '../components';
 
-import { onAuthAnonymous, onAuthMailPassword } from '../libs/firebase';
+import { onRegisterMailPassword } from '../libs/firebase';
 
-const AuthScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -22,20 +22,16 @@ const AuthScreen = ({ navigation }) => {
 			alert('ユーザー名またはパスワードが入力されていません');
 			return false;
 		}
-		await onAuthMailPassword(email, password);
+		await onRegisterMailPassword(email, password);
 	};
 
-	const registerNavigateHandler = () => {
-		navigation.navigate('register');
+	const backNavigateHandler = () => {
+		navigation.goBack();
 	};
 
 	return (
 		<View style={styles.container}>
 			<BackTile>
-				<View style={styles.header}>
-					<Text style={styles.title}>bare-workflow-app</Text>
-					<Text style={styles.subTitle}>sample react-native</Text>
-				</View>
 				<View style={styles.form}>
 					<AppInput
 						title="メールアドレス"
@@ -53,10 +49,8 @@ const AuthScreen = ({ navigation }) => {
 						onChangeText={changePassword}
 						value={password}
 					/>
-					<AppButton title="ログインする" onPress={authHandler} />
-					<View style={styles.divider} />
-					<AppButton title="新規登録する" onPress={registerNavigateHandler} />
-					<AppButton title="ログインしない（匿名）" onPress={onAuthAnonymous} />
+					<AppButton title="登録" onPress={authHandler} />
+					<AppButton title="戻る" onPress={backNavigateHandler} />
 				</View>
 			</BackTile>
 		</View>
@@ -75,24 +69,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		width: '100%',
 	},
-	header: {
-		flex: 3,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	title: {
-		textAlign: 'center',
-		fontSize: 38,
-		fontFamily: 'DancingScript-Bold',
-	},
-	subTitle: {
-		textAlign: 'center',
-		fontSize: 24,
-		fontFamily: 'DancingScript-Medium',
-	},
 	form: {
-		flex: 7,
-		justifyContent: 'flex-start',
+		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	divider: {
@@ -100,4 +78,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default AuthScreen;
+export default RegisterScreen;

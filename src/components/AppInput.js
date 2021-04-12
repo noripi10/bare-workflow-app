@@ -22,9 +22,10 @@ const styles = StyleSheet.create({
 		width: 250,
 		height: 35,
 		borderWidth: 0.5,
-		borderColor: '#aaa',
+		borderColor: '#212',
 		borderRadius: 8,
 		paddingHorizontal: 16,
+		marginVertical: 3,
 	},
 });
 

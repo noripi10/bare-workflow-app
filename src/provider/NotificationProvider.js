@@ -17,7 +17,7 @@ const NotificationProvider = ({ children }) => {
 		notificationListener.current = Notifications.addNotificationReceivedListener(
 			(notification) => {
 				setNotification(notification);
-				console.log({ notification });
+				// console.log({ notification });
 			}
 		);
 

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { AuthScreen } from '../screens';
-import { TabNavigator } from './index';
+import { TabNavigator, StackNavigator } from './index';
 import { AppContext } from '../provider/AppProvider';
 
 const Route = () => {
@@ -11,7 +11,11 @@ const Route = () => {
 
 	return (
 		<NavigationContainer theme={DarkTheme}>
-			{user && Object.keys(user).length > 0 ? <TabNavigator /> : <AuthScreen />}
+			{user && Object.keys(user).length > 0 ? (
+				<TabNavigator />
+			) : (
+				<StackNavigator />
+			)}
 			<StatusBar style="auto" />
 		</NavigationContainer>
 	);
