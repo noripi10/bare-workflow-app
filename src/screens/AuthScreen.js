@@ -3,7 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { AppInput, AppButton, BackTile } from '../components';
 
-import { onAuthAnonymous, onAuthMailPassword } from '../libs/firebase';
+import {
+	onAuthAnonymous,
+	onAuthMailPassword,
+	onAuthGoogle,
+} from '../libs/firebase';
 
 const AuthScreen = ({ navigation }) => {
 	const [email, setEmail] = useState('');
@@ -55,6 +59,7 @@ const AuthScreen = ({ navigation }) => {
 					/>
 					<AppButton title="ログインする" onPress={authHandler} />
 					<View style={styles.divider} />
+					<AppButton title="Google Login" onPress={onAuthGoogle} />
 					<AppButton title="新規登録する" onPress={registerNavigateHandler} />
 					<AppButton title="ログインしない（匿名）" onPress={onAuthAnonymous} />
 				</View>
