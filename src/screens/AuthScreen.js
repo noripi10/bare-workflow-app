@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
 
 import { AppInput, AppButton, BackTile } from '../components';
 
@@ -10,8 +11,8 @@ import {
 } from '../libs/firebase';
 
 const AuthScreen = ({ navigation }) => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [email, setEmail] = useState('hrnr1177@yahoo.co.jp');
+	const [password, setPassword] = useState('62486248hs');
 
 	const changeEmail = (text) => {
 		setEmail(text);

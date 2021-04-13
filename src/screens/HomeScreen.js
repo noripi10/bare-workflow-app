@@ -2,22 +2,19 @@ import React, { useState, useContext } from 'react';
 import {
 	SafeAreaView,
 	View,
-	Text,
 	FlatList,
 	Image,
 	TouchableOpacity,
 	StyleSheet,
 } from 'react-native';
-import { Constants } from 'react-native-unimodules';
+import { Text } from 'react-native-paper';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImageManipulator from 'expo-image-manipulator';
 
-import { NotificationContent } from '../provider/NotificationProvider';
 import { useMediaPermission } from '../hooks/useMediaPermission';
 import { BackTile } from '../components';
 
 const HomeScreen = () => {
-	const { pushToken } = useContext(NotificationContent);
 	const [albums, setAlbums] = useState([]);
 	const [album, setAlbum] = useState({});
 	const [assets, setAssets] = useState([]);
@@ -35,7 +32,9 @@ const HomeScreen = () => {
 		const { assets } = await MediaLibrary.getAssetsAsync({ album });
 		const list = await Promise.all(
 			assets.map(async (asset) => {
-				const manipResult = await ImageManipulator.manipulateAsync(asset.uri);
+				const manipResult = await ImageManipulator.manipulateAsync(asset.uri, [
+					{ resize: { width: 200, height: 200 } },
+				]);
 				return manipResult;
 			})
 		);
@@ -44,12 +43,9 @@ const HomeScreen = () => {
 	};
 
 	return (
-		<BackTile style={styles.container} colors={['#81ffef', '#f067b4']}>
+		<BackTile style={styles.container} colors={['#8ec5fc', '#e0c3fc']}>
 			<SafeAreaView style={{ flex: 1 }}>
 				<View style={styles.headerContainer}>
-					<Text>{Constants.isDevice ? 'Real Device' : 'Not Real Device'}</Text>
-					<Text>{Constants.isDevice && pushToken}</Text>
-					<Text>MediaLibrary : {result.toString()}</Text>
 					<TouchableOpacity
 						style={styles.touchButton}
 						onPress={getAlbums}
@@ -57,9 +53,10 @@ const HomeScreen = () => {
 					>
 						<Text>Get Albums</Text>
 					</TouchableOpacity>
+					<Text>MediaLibrary : {result.toString()}</Text>
+					<Text>{albums.length}</Text>
 				</View>
 				<View style={styles.middleContainer}>
-					<Text>{albums.length}</Text>
 					<FlatList
 						data={albums}
 						renderItem={({ item }) => (
@@ -104,8 +101,10 @@ const styles = StyleSheet.create({
 	},
 	headerContainer: {
 		flex: 0.5,
-		justifyContent: 'center',
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
+		flexDirection: 'row',
+
 		width: '100%',
 	},
 	middleContainer: {
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		width: '100%',
 		height: 32,
-		backgroundColor: '#ddd',
+		backgroundColor: '#424242',
 		borderWidth: 0.5,
 		borderBottomColor: '#000',
 	},

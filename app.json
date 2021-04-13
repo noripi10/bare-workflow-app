@@ -7,7 +7,8 @@
 		"version": "1.0.0",
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
-			"bundleIdentifier": "com.hiroapp.bareworkflowapp2"
+			"bundleIdentifier": "com.hiroapp.bareworkflowapp2",
+			"userInterfaceStyle": "automatic"
 		}
 	}
 }

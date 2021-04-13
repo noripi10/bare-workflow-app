@@ -28,13 +28,13 @@ export const onAuthMailPassword = async (email, password) => {
 export const onAuthGoogle = async () => {
 	try {
 		GoogleSignin.configure({
+			// firebaseのsign-in-methodにあるWebClientID
 			webClientId:
-				'1091147541523-kr2qgu8406a5987srahapa8elsl7plgq.apps.googleusercontent.com',
+				'57931604350-phjrp4rddjg6ju5j26nv9gookeka8hma.apps.googleusercontent.com',
 			scopes: ['profile', 'email'],
 		});
 
 		const { idToken } = await GoogleSignin.signIn();
-		console.log({ idToken });
 		const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 		await auth().signInWithCredential(googleCredential);
 	} catch (err) {

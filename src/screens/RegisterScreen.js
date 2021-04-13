@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { AppInput, AppButton, BackTile } from '../components';

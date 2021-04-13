@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
 
-export const AppContext = createContext();
+export const AuthContext = createContext();
 
-const AppProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
 	// user
 	const [user, setUser] = useState(null);
 
@@ -22,9 +22,9 @@ const AppProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<AppContext.Provider value={{ user, setUser }}>
+		<AuthContext.Provider value={{ user, setUser }}>
 			{children}
-		</AppContext.Provider>
+		</AuthContext.Provider>
 	);
 };
-export default AppProvider;
+export default AuthProvider;

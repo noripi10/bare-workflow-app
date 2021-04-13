@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-paper';
 
 const AppButton = ({ title, ...otherProps }) => {
 	return (
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
 	button: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'lightblue',
+		backgroundColor: '#458',
 		padding: 16,
 		margin: 6,
 		borderRadius: 32,

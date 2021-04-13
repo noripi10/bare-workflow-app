@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Text, TextInput } from 'react-native-paper';
 
 const AppInput = ({ title, ...otherProps }) => {
 	return (
