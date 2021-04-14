@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const BackTile = ({
 	children,
 	style = {},
-	colors = ['#5EFCE8', '#736EFE'],
+	colors = ['#736EFE', '#5efc90'],
 }) => {
 	return (
 		<LinearGradient

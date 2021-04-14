@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, UserScreen } from '../screens';
+import { HomeScreen, SampleScreen, UserScreen } from '../screens';
 import { FontAwesome } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -27,6 +27,16 @@ const TabNavigator = () => {
 					tabBarLabel: 'ホーム',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="home" color={color} size={size} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="hold"
+				component={SampleScreen}
+				options={{
+					tabBarLabel: 'ホールド',
+					tabBarIcon: ({ color, size }) => (
+						<FontAwesome name="star" color={color} size={size} />
 					),
 				}}
 			/>
