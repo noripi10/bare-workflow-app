@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, SampleScreen, UserScreen } from '../screens';
+import { HomeScreen, MapScreen, SampleScreen, UserScreen } from '../screens';
 import { FontAwesome } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -18,6 +18,8 @@ const TabNavigator = () => {
 					// borderRadius: 32,
 					// height: 100,
 				},
+				activeTintColor: '#954',
+				inactiveTintColor: '#ddd',
 			}}
 		>
 			<Tab.Screen
@@ -37,6 +39,16 @@ const TabNavigator = () => {
 					tabBarLabel: 'ホールド',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="star" color={color} size={size} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="map"
+				component={MapScreen}
+				options={{
+					tabBarLabel: 'マップ',
+					tabBarIcon: ({ color, size }) => (
+						<FontAwesome name="map-marker" color={color} size={size} />
 					),
 				}}
 			/>

@@ -6,6 +6,7 @@
 		"slug": "bare-workflow-app",
 		"version": "1.0.0",
 		"assetBundlePatterns": ["**/*"],
+		"userInterfaceStyle": "automatic",
 		"ios": {
 			"bundleIdentifier": "com.hiroapp.bareworkflowapp2",
 			"userInterfaceStyle": "automatic"
