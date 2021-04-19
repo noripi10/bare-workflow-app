@@ -3,6 +3,7 @@ import React from 'react';
 import AuthProvider from './provider/AuthProvider';
 import NotificationProvider from './provider/NotificationProvider';
 import { Route } from './navigation';
+import { HomeScreen } from './screens';
 
 export default function App() {
 	return (

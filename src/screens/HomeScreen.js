@@ -11,14 +11,14 @@ import { Text } from 'react-native-paper';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImageManipulator from 'expo-image-manipulator';
 
-import { useMediaPermission } from '../hooks/useMediaPermission';
+import { useMedia } from '../hooks/useMedia';
 import { BackTile } from '../components';
 
 const HomeScreen = () => {
 	const [albums, setAlbums] = useState([]);
 	const [album, setAlbum] = useState({});
 	const [assets, setAssets] = useState([]);
-	const { result } = useMediaPermission();
+	const { permission } = useMedia();
 
 	const getAlbums = async () => {
 		const albums = await MediaLibrary.getAlbumsAsync({
@@ -49,11 +49,11 @@ const HomeScreen = () => {
 					<TouchableOpacity
 						style={styles.touchButton}
 						onPress={getAlbums}
-						disabled={!result}
+						disabled={!permission}
 					>
 						<Text>Get Albums</Text>
 					</TouchableOpacity>
-					<Text>MediaLibrary : {result.toString()}</Text>
+					<Text>MediaLibrary : {permission.toString()}</Text>
 					<Text>{albums.length}</Text>
 				</View>
 				<View style={styles.middleContainer}>

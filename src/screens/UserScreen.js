@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { Divider, Text } from 'react-native-paper';
 import { Constants } from 'react-native-unimodules';
 import { Avatar, Button } from 'react-native-paper';
@@ -24,7 +24,7 @@ const UserScreen = () => {
 	};
 
 	return (
-		<BackTile style={styles.container} colors={['#0054A6', '#0072BC']}>
+		<BackTile style={styles.container} colors={['#0054A6', '#0072af']}>
 			<View style={styles.avatarContainer}>
 				{user.photoURL ? (
 					<Avatar.Image size={90} source={{ uri: user.photoURL }} />
@@ -38,7 +38,7 @@ const UserScreen = () => {
 				<Text style={styles.displayName}>{user.displayName || user.email}</Text>
 			</View>
 			<Divider style={styles.divider} />
-			<View style={styles.mainContainer}>
+			<ScrollView contentContainerStyle={styles.mainContainer}>
 				<Text>{Constants.isDevice ? 'Real Device' : 'Not Real Device'}</Text>
 				<Text>{`pushToken : ${pushToken}`}</Text>
 				<Button
@@ -52,7 +52,19 @@ const UserScreen = () => {
 				{/* <Text>{JSON.stringify(user)}</Text> */}
 				<AppButton title="ログアウト" onPress={onSignOut} />
 				<AppButton title="get github user" onPress={getGithubUser} />
-			</View>
+				<Image
+					source={{
+						uri:
+							'https://www.photolibrary.jp/mhd2/img18/450-200606301252262635.jpg',
+					}}
+					style={{ width: '100%', height: 200 }}
+					resizeMethod="auto"
+				/>
+				<Image
+					source={require('../images/sky_00182.jpg')}
+					style={{ width: '100%', height: 200 }}
+				/>
+			</ScrollView>
 
 			<BannerAd
 				unitId={TestIds.BANNER}
@@ -76,12 +88,12 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 	avatarContainer: {
-		flex: 3,
+		height: '23%',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
 	mainContainer: {
-		flex: 9,
+		flex: 1,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		paddingVertical: 20,

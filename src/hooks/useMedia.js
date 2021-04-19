@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import * as MediaLibrary from 'expo-media-library';
 
-export const useMediaPermission = () => {
-	const [result, setResult] = useState(false);
+export const useMedia = () => {
+	const [permission, setPermission] = useState(false);
 
 	useEffect(() => {
 		const permissionFunc = async () => {
@@ -18,10 +18,10 @@ export const useMediaPermission = () => {
 					confirm = true;
 				}
 			}
-			setResult(confirm);
+			setPermission(confirm);
 		};
 		permissionFunc();
 	}, []);
 
-	return { result };
+	return { permission };
 };
