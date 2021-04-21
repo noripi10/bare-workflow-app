@@ -1,5 +1,6 @@
 {
 	"name": "bare-workflow-app",
+	"slug": "bare-workflow-app",
 	"displayName": "bare-workflow-app",
 	"expo": {
 		"name": "bare-workflow-app",

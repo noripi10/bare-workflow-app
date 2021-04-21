@@ -35,37 +35,35 @@ const AuthScreen = ({ navigation }) => {
 	};
 
 	return (
-		<View style={styles.container}>
-			<BackTile>
-				<View style={styles.header}>
-					<Text style={styles.title}>bare-workflow-app</Text>
-					<Text style={styles.subTitle}>sample react-native</Text>
-				</View>
-				<View style={styles.form}>
-					<AppInput
-						title="メールアドレス"
-						autoFocus
-						autoCompleteType="email"
-						keyboardType="email-address"
-						onChangeText={changeEmail}
-						value={email}
-					/>
-					<AppInput
-						title="パスワード"
-						autoCompleteType="password"
-						keyboardType="default"
-						secureTextEntry
-						onChangeText={changePassword}
-						value={password}
-					/>
-					<AppButton title="ログインする" onPress={authHandler} />
-					<View style={styles.divider} />
-					<AppButton title="Google Login" onPress={onAuthGoogle} />
-					<AppButton title="新規登録する" onPress={registerNavigateHandler} />
-					<AppButton title="ログインしない（匿名）" onPress={onAuthAnonymous} />
-				</View>
-			</BackTile>
-		</View>
+		<BackTile style={styles.container}>
+			<View style={styles.header}>
+				<Text style={styles.title}>bare-workflow-app</Text>
+				<Text style={styles.subTitle}>sample react-native</Text>
+			</View>
+			<View style={styles.form}>
+				<AppInput
+					title="メールアドレス"
+					autoFocus
+					autoCompleteType="email"
+					keyboardType="email-address"
+					onChangeText={changeEmail}
+					value={email}
+				/>
+				<AppInput
+					title="パスワード"
+					autoCompleteType="password"
+					keyboardType="default"
+					secureTextEntry
+					onChangeText={changePassword}
+					value={password}
+				/>
+				<AppButton title="ログインする" onPress={authHandler} />
+				<View style={styles.divider} />
+				<AppButton title="Google Login" onPress={onAuthGoogle} />
+				<AppButton title="新規登録する" onPress={registerNavigateHandler} />
+				<AppButton title="ログインしない（匿名）" onPress={onAuthAnonymous} />
+			</View>
+		</BackTile>
 	);
 };
 

@@ -22,8 +22,8 @@ const BackTile = ({
 const styles = StyleSheet.create({
 	linerGradient: {
 		flex: 1,
-		justifyContent: 'center',
-		width: '100%',
+		// justifyContent: 'center',
+		// width: '100%',
 	},
 });
 

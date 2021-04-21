@@ -22,7 +22,14 @@ target 'bareworkflowapp' do
   # Note that if you have use_frameworks! enabled, Flipper will not work.
   #
   #  use_flipper!
-  #  post_install do |installer|
-  #    flipper_post_install(installer)
-  #  end
+    post_install do |installer|
+  #      flipper_post_install(installer)
+
+      installer.pods_project.targets.each do |target|
+        if target.name == "React-Core.common-AccessibilityResources"
+          target.remove_from_project
+        end
+      end
+
+    end
 end

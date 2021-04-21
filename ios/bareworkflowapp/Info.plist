@@ -48,8 +48,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to use your location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Allow $(PRODUCT_NAME) to use your location</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Give $(PRODUCT_NAME) permission to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -91,11 +95,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>Allow $(PRODUCT_NAME) to use your location</string>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>Allow $(PRODUCT_NAME) to use your location</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Allow $(PRODUCT_NAME) to use your location</string>
 </dict>
 </plist>

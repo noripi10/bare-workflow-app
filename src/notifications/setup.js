@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 import { Constants } from 'react-native-unimodules';
 import * as Notifications from 'expo-notifications';
+import { enableNetworkProviderAsync } from 'expo-location';
 
 Notifications.setNotificationHandler({
 	handleNotification: async () => ({
@@ -42,4 +43,23 @@ export const registerForPushNotificationsAsync = async () => {
 	}
 
 	return token;
+};
+
+export const sendPushNotification = async (expoPushToken) => {
+	const message = {
+		to: expoPushToken,
+		sound: 'default',
+		title: 'push notification test',
+		body: '⚽️🏀🎾',
+		data: { date: Date.now().toLocaleString() },
+	};
+	await fetch('https://exp.host/--/api/v2/push/send', {
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			'Context-Type': 'application/json',
+			'Accept-encoding': 'gzip, deflate',
+		},
+		body: JSON.stringify(message),
+	});
 };
