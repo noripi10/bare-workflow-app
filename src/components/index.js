@@ -2,3 +2,4 @@ export { default as AppInput } from './AppInput';
 export { default as AppButton } from './AppButton';
 export { default as BackTile } from './BackTile';
 export { default as IconButton } from './IconButton';
+export { default as MarkerCard } from './MarkerCard';

@@ -14,36 +14,11 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 
 import { useLocation } from '../hooks/useLocation';
+import { MarkerCard } from '../components';
 
 // Cardの分画面中央をずらす
 const LAT_PLUS = -0.05;
 const LNG_PLUS = 0.1;
-
-const LeftContent = (props) => <Avatar.Icon {...props} icon="map-marker" />;
-
-const MyComponent = (item, index) => (
-	<Card style={[styles.card]}>
-		<Card.Title
-			title="Card Title"
-			subtitle="Card Subtitle"
-			left={LeftContent}
-		/>
-		{/* <Card.Content>
-			<Title>Card title</Title>
-			<Paragraph>Card content</Paragraph>
-		</Card.Content> */}
-		<Card.Cover
-			source={{ uri: 'https://picsum.photos/700' }}
-			resizeMethod="auto"
-			resizeMode="cover"
-			style={{ width: '100%', height: 165 }}
-		/>
-		<Card.Actions style={{ justifyContent: 'flex-end' }}>
-			<Button>Cancel</Button>
-			<Button>Ok</Button>
-		</Card.Actions>
-	</Card>
-);
 
 const MapScreen = () => {
 	const [DATA, setDATA] = useState([]);
@@ -65,7 +40,9 @@ const MapScreen = () => {
 	// 画面向き関係
 	const { width: WIDTH, height: HEIGHT } = useWindowDimensions();
 	isTate.current = WIDTH < HEIGHT;
-	const addCarouselContainer = isTate.current ? { bottom: 16 } : { right: 16 };
+	const addCarouselContainer = isTate.current
+		? { bottom: 16, width: '100%' }
+		: { right: 16, width: '45%' };
 
 	// テーマ関係
 	const theme = useColorScheme();
@@ -133,7 +110,7 @@ const MapScreen = () => {
 			<MapView
 				provider={PROVIDER_GOOGLE}
 				style={styles.map}
-				customMapStyle={isDarkTheme ? mapStandardStyle : mapStandardStyle}
+				customMapStyle={isDarkTheme ? mapDarkStyle : mapStandardStyle}
 				region={region}
 				// onRegionChange={(newRegion) => {
 				// 	// console.log({ newRegion });
@@ -150,8 +127,10 @@ const MapScreen = () => {
 				<View style={[styles.carouselContainer, { ...addCarouselContainer }]}>
 					<Carousel
 						data={DATA}
-						renderItem={({ item, index }) => MyComponent(item, index)}
-						sliderWidth={isTate.current ? WIDTH : HEIGHT * 0.8}
+						renderItem={({ item, index }) => (
+							<MarkerCard {...{ item, index }} />
+						)}
+						sliderWidth={isTate.current ? WIDTH : WIDTH * 0.5}
 						itemWidth={isTate.current ? WIDTH * 0.8 : HEIGHT * 0.7}
 						onSnapToItem={snapChangeHandler}
 						zoomScale={0.7}
@@ -240,15 +219,7 @@ const mapDarkStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: '#212121',
-			},
-		],
-	},
-	{
-		elementType: 'labels.icon',
-		stylers: [
-			{
-				visibility: 'off',
+				color: '#242f3e',
 			},
 		],
 	},
@@ -256,7 +227,7 @@ const mapDarkStyle = [
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#757575',
+				color: '#746855',
 			},
 		],
 	},
@@ -264,33 +235,7 @@ const mapDarkStyle = [
 		elementType: 'labels.text.stroke',
 		stylers: [
 			{
-				color: '#212121',
-			},
-		],
-	},
-	{
-		featureType: 'administrative',
-		elementType: 'geometry',
-		stylers: [
-			{
-				color: '#757575',
-			},
-		],
-	},
-	{
-		featureType: 'administrative.country',
-		elementType: 'labels.text.fill',
-		stylers: [
-			{
-				color: '#9e9e9e',
-			},
-		],
-	},
-	{
-		featureType: 'administrative.land_parcel',
-		stylers: [
-			{
-				visibility: 'off',
+				color: '#242f3e',
 			},
 		],
 	},
@@ -299,7 +244,7 @@ const mapDarkStyle = [
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#bdbdbd',
+				color: '#d59563',
 			},
 		],
 	},
@@ -308,7 +253,15 @@ const mapDarkStyle = [
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#757575',
+				color: '#d59563',
+			},
+		],
+	},
+	{
+		featureType: 'poi.business',
+		stylers: [
+			{
+				visibility: 'off',
 			},
 		],
 	},
@@ -317,7 +270,16 @@ const mapDarkStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: '#181818',
+				color: '#263c3f',
+			},
+		],
+	},
+	{
+		featureType: 'poi.park',
+		elementType: 'labels.text',
+		stylers: [
+			{
+				visibility: 'off',
 			},
 		],
 	},
@@ -326,25 +288,33 @@ const mapDarkStyle = [
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#616161',
+				color: '#6b9a76',
 			},
 		],
 	},
 	{
-		featureType: 'poi.park',
-		elementType: 'labels.text.stroke',
+		featureType: 'poi.school',
 		stylers: [
 			{
-				color: '#1b1b1b',
+				visibility: 'off',
 			},
 		],
 	},
 	{
 		featureType: 'road',
-		elementType: 'geometry.fill',
+		elementType: 'geometry',
 		stylers: [
 			{
-				color: '#2c2c2c',
+				color: '#38414e',
+			},
+		],
+	},
+	{
+		featureType: 'road',
+		elementType: 'geometry.stroke',
+		stylers: [
+			{
+				color: '#212a37',
 			},
 		],
 	},
@@ -353,16 +323,16 @@ const mapDarkStyle = [
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#8a8a8a',
+				color: '#9ca5b3',
 			},
 		],
 	},
 	{
 		featureType: 'road.arterial',
-		elementType: 'geometry',
+		elementType: 'labels',
 		stylers: [
 			{
-				color: '#373737',
+				visibility: 'off',
 			},
 		],
 	},
@@ -371,34 +341,68 @@ const mapDarkStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: '#3c3c3c',
+				color: '#746855',
 			},
 		],
 	},
 	{
-		featureType: 'road.highway.controlled_access',
-		elementType: 'geometry',
+		featureType: 'road.highway',
+		elementType: 'geometry.stroke',
 		stylers: [
 			{
-				color: '#4e4e4e',
+				color: '#1f2835',
+			},
+		],
+	},
+	{
+		featureType: 'road.highway',
+		elementType: 'labels',
+		stylers: [
+			{
+				visibility: 'off',
+			},
+		],
+	},
+	{
+		featureType: 'road.highway',
+		elementType: 'labels.text.fill',
+		stylers: [
+			{
+				color: '#f3d19c',
 			},
 		],
 	},
 	{
 		featureType: 'road.local',
-		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#616161',
+				visibility: 'off',
 			},
 		],
 	},
 	{
 		featureType: 'transit',
+		elementType: 'geometry',
+		stylers: [
+			{
+				color: '#2f3948',
+			},
+		],
+	},
+	{
+		featureType: 'transit.station',
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#757575',
+				color: '#d59563',
+			},
+		],
+	},
+	{
+		featureType: 'water',
+		stylers: [
+			{
+				color: '#673dff',
 			},
 		],
 	},
@@ -407,7 +411,7 @@ const mapDarkStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: '#000000',
+				color: '#17263c',
 			},
 		],
 	},
@@ -416,7 +420,16 @@ const mapDarkStyle = [
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#3d3d3d',
+				color: '#515c6d',
+			},
+		],
+	},
+	{
+		featureType: 'water',
+		elementType: 'labels.text.stroke',
+		stylers: [
+			{
+				color: '#17263c',
 			},
 		],
 	},
@@ -444,7 +457,8 @@ const styles = StyleSheet.create({
 	},
 	carouselContainer: {
 		position: 'absolute',
-		bottom: 16,
+		// justifyContent: 'center',
+		// alignItems: 'center',
 	},
 	paginationContainer: {
 		width: '100%',
@@ -456,12 +470,12 @@ const styles = StyleSheet.create({
 		width: 10,
 		height: 10,
 		borderRadius: 5,
-		marginHorizontal: 0,
-		backgroundColor: 'rgba(0,0,0,0.92)',
+		marginHorizontal: 3,
+		backgroundColor: 'rgba(0,0,255,1)',
 		marginHorizontal: 1,
 	},
 	inactiveDot: {
-		backgroundColor: 'rgba(0,0,0,0.6)',
+		backgroundColor: 'rgba(255,0,0,0.5)',
 	},
 });
 
