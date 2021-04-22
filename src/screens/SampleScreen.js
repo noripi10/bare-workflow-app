@@ -24,13 +24,13 @@ const HoldSampleScreen = () => {
         <HoldItem items={MenuItems} menuAnchorPosition="bottom-right">
 				<View style={styles.item} />
 			</HoldItem> */}
-				<View style={{ position: 'absolute', bottom: 30, right: 30 }}>
+				<View style={styles.plusButtonContainer}>
 					<IconButton
 						name="plus"
 						color="#fff"
 						size={24}
 						buttonStyle={{ backgroundColor: '#000' }}
-						onPress={() => alert('click')}
+						onPressEvent={() => alert('click')}
 					/>
 				</View>
 			</View>
@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
 		height: 100,
 		borderRadius: 8,
 		backgroundColor: 'blue',
+	},
+	plusButtonContainer: {
+		position: 'absolute',
+		bottom: 32,
+		right: 32,
 	},
 });
 
