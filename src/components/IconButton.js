@@ -43,7 +43,7 @@ const IconButton = ({
 				style={{
 					transform: [
 						{
-							rotate: animationValue.interpolate({
+							rotateZ: animationValue.interpolate({
 								inputRange: [0, 1],
 								outputRange: ['0deg', '360deg'],
 								extrapolate: 'clamp',
