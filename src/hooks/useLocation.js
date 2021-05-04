@@ -6,12 +6,18 @@ export const useLocation = () => {
 
 	const getGeoLocation = async () => {
 		try {
+			const { status } = await Location.getPermissionsAsync();
+			if (status !== 'granted') {
+				throw '位置情報取得設定がされていません';
+			}
+
 			const result = await Location.getCurrentPositionAsync();
+			// console.log(result);
 
 			return result;
 		} catch (err) {
 			alert(err);
-			console.log(err);
+			// console.log(err);
 		}
 	};
 
