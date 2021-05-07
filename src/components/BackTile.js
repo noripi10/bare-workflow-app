@@ -6,6 +6,7 @@ const BackTile = ({
 	children,
 	style = {},
 	colors = ['#736EFE', '#5efc90'],
+	...otherProps
 }) => {
 	return (
 		<LinearGradient

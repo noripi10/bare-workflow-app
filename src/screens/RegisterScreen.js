@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
 
 import { AppInput, AppButton, BackTile } from '../components';
 
@@ -30,8 +31,11 @@ const RegisterScreen = ({ navigation }) => {
 	};
 
 	return (
-		<BackTile style={styles.container}>
+		<BackTile style={styles.container} colors={['#237', '#dde']}>
 			<View style={styles.form}>
+				<View style={styles.headerContainer}>
+					<Text style={styles.title}>Register</Text>
+				</View>
 				<AppInput
 					title="メールアドレス"
 					autoFocus
@@ -67,9 +71,17 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		width: '100%',
 	},
+	headerContainer: {
+		margin: 36,
+	},
+	title: {
+		fontFamily: 'DancingScript-Medium',
+		fontSize: 26,
+	},
 	form: {
 		justifyContent: 'center',
 		alignItems: 'center',
+		marginTop: 150,
 	},
 	divider: {
 		marginTop: 50,
