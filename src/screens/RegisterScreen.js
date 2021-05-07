@@ -30,30 +30,28 @@ const RegisterScreen = ({ navigation }) => {
 	};
 
 	return (
-		<View style={styles.container}>
-			<BackTile>
-				<View style={styles.form}>
-					<AppInput
-						title="メールアドレス"
-						autoFocus
-						autoCompleteType="email"
-						keyboardType="email-address"
-						onChangeText={changeEmail}
-						value={email}
-					/>
-					<AppInput
-						title="パスワード"
-						autoCompleteType="password"
-						keyboardType="default"
-						secureTextEntry
-						onChangeText={changePassword}
-						value={password}
-					/>
-					<AppButton title="登録" onPress={authHandler} />
-					<AppButton title="戻る" onPress={backNavigateHandler} />
-				</View>
-			</BackTile>
-		</View>
+		<BackTile style={styles.container}>
+			<View style={styles.form}>
+				<AppInput
+					title="メールアドレス"
+					autoFocus
+					autoCompleteType="email"
+					keyboardType="email-address"
+					onChangeText={changeEmail}
+					value={email}
+				/>
+				<AppInput
+					title="パスワード"
+					autoCompleteType="password"
+					keyboardType="default"
+					secureTextEntry
+					onChangeText={changePassword}
+					value={password}
+				/>
+				<AppButton title="登録" onPress={authHandler} />
+				<AppButton title="戻る" onPress={backNavigateHandler} />
+			</View>
+		</BackTile>
 	);
 };
 

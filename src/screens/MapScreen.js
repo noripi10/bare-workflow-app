@@ -97,7 +97,7 @@ const MapScreen = () => {
 				coords: { latitude, longitude },
 			} = result;
 
-			console.log(result);
+			// console.log(result);
 		};
 
 		if (permission) {
@@ -146,6 +146,14 @@ const MapScreen = () => {
 					/>
 				</View>
 			)}
+			<Button
+				mode="contained"
+				uppercase={false}
+				style={{ position: 'absolute', top: 40, right: 12 }}
+				onPress={() => getGeoLocation()}
+			>
+				getGeoLocation
+			</Button>
 			<StatusBar style="dark" />
 		</View>
 	);
