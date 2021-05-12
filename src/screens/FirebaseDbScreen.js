@@ -12,7 +12,7 @@ import { BackTile, IconButton } from '../components';
 // 	{ text: 'Action 3', isDestructive: true, onPress: () => {} },
 // ];
 
-const HoldSampleScreen = () => {
+const FirebaseDbScreen = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default HoldSampleScreen;
+export default FirebaseDbScreen;

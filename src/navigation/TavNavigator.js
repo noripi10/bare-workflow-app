@@ -1,6 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, MapScreen, SampleScreen, UserScreen } from '../screens';
+import {
+	HomeScreen,
+	MapScreen,
+	FirebaseDbScreen,
+	SQLiteScreen,
+	UserScreen,
+} from '../screens';
 import { FontAwesome } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -26,19 +32,29 @@ const TabNavigator = () => {
 				name="home"
 				component={HomeScreen}
 				options={{
-					tabBarLabel: 'ホーム',
+					tabBarLabel: 'HOME',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="home" color={color} size={size} />
 					),
 				}}
 			/>
 			<Tab.Screen
-				name="hold"
-				component={SampleScreen}
+				name="firebase"
+				component={FirebaseDbScreen}
 				options={{
-					tabBarLabel: 'ホールド',
+					tabBarLabel: 'FIREBASE',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="star" color={color} size={size} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="sqlite"
+				component={SQLiteScreen}
+				options={{
+					tabBarLabel: 'SQLite',
+					tabBarIcon: ({ color, size }) => (
+						<FontAwesome name="star-o" color={color} size={size} />
 					),
 				}}
 			/>
@@ -46,7 +62,7 @@ const TabNavigator = () => {
 				name="map"
 				component={MapScreen}
 				options={{
-					tabBarLabel: 'マップ',
+					tabBarLabel: 'MAP',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="map-marker" color={color} size={size} />
 					),
@@ -56,7 +72,7 @@ const TabNavigator = () => {
 				name="user"
 				component={UserScreen}
 				options={{
-					tabBarLabel: 'ユーザー情報',
+					tabBarLabel: 'USER',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="user" color={color} size={size} />
 					),
