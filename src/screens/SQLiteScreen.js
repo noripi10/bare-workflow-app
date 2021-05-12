@@ -21,7 +21,7 @@ const SQLiteScreen = () => {
         name text,
         age integer)`
 		);
-		executeSqlAsync(`select * from user;`).then((result) => {
+		executeSqlAsync(`select * from user`).then((result) => {
 			setUserList(result.rows._array);
 		});
 
@@ -33,37 +33,54 @@ const SQLiteScreen = () => {
 	const handleAddUser = async () => {
 		const userName = 'user' + Math.floor(Math.random() * 1000),
 			age = 30;
-		const result = await executeSqlAsync(
+		await executeSqlAsync(
 			`insert into user (name, age) values ("${userName}",${age});`
 		);
-		setUserList(result.rows._array);
+		executeSqlAsync(`select * from user`).then((result) => {
+			setUserList(result.rows._array);
+		});
 	};
 
 	const handleDeleteUser = async (id) => {
-		const result = await executeSqlAsync(`delete user where id = ${id}`);
-		setUserList(result.rows._array);
+		await executeSqlAsync(`delete from user where id = ${id}`);
+		executeSqlAsync(`select * from user`).then((result) => {
+			setUserList(result.rows._array);
+		});
 	};
+
+	const handleDeleteAllUser = async (id) => {
+		await executeSqlAsync(`delete from user`);
+		setUserList([]);
+	};
+
 	return (
 		<BackTile colors={['#333', '#777']}>
-			<SafeAreaView>
-				<View style={styles.buttons}>
-					<TouchableOpacity style={styles.button} onPress={handleAddUser}>
-						<Text>データ追加</Text>
-					</TouchableOpacity>
-				</View>
+			<SafeAreaView />
+			<View style={styles.buttons}>
+				<TouchableOpacity style={styles.button} onPress={handleAddUser}>
+					<Text>データ追加</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.button} onPress={handleDeleteAllUser}>
+					<Text>全件削除</Text>
+				</TouchableOpacity>
+			</View>
+			<View style={styles.list}>
 				<Text>ユーザー件数：{userList.length}件</Text>
 				<FlatList
-					style={{ flex: 1 }}
 					data={userList}
 					keyExtractor={(item) => item.id.toString()}
 					renderItem={({ item }) => (
 						<View style={styles.renderItem}>
-							<Text>{item.user}</Text>
-							<Text>{item.age}</Text>
+							<Text>
+								{item.id} {item.name} {item.age}
+							</Text>
+							<TouchableOpacity onPress={() => handleDeleteUser(item.id)}>
+								<Text>削除</Text>
+							</TouchableOpacity>
 						</View>
 					)}
 				/>
-			</SafeAreaView>
+			</View>
 		</BackTile>
 	);
 };
@@ -79,12 +96,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#212121',
+		borderColor: '#000',
+		borderWidth: 1,
+	},
+	list: {
+		flex: 1,
 	},
 	renderItem: {
 		width: '100%',
 		height: 30,
-		backgroundColor: '#ddd',
 		borderBottomWidth: 1,
+		flexDirection: 'row',
+		marginVertical: 6,
+		justifyContent: 'space-between',
+		paddingHorizontal: 16,
 	},
 });
 
