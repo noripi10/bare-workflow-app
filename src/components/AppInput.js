@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
 
-const AppInput = ({ title, ...otherProps }) => {
+const AppInput = ({ title, customStyles, ...otherProps }) => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.label}>{title}</Text>
-			<TextInput style={styles.input} {...otherProps} />
+			<TextInput style={[styles.input, customStyles]} {...otherProps} />
 		</View>
 	);
 };

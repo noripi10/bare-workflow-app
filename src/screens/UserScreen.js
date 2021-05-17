@@ -6,14 +6,18 @@ import { Avatar, Button } from 'react-native-paper';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 import { BackTile, AppButton } from '../components';
-import { AuthContext } from '../provider/AuthProvider';
+import { AuthContext, useAuth, useDisplayUser } from '../provider/AuthProvider';
 import { NotificationContent } from '../provider/NotificationProvider';
 import { onSignOut } from '../libs/firebase';
 import { registerForPushNotificationsAsync } from '../notifications/setup';
 
 const UserScreen = () => {
 	const { pushToken } = useContext(NotificationContent);
-	const { user } = useContext(AuthContext);
+	const { user, auth } = useContext(AuthContext);
+	const isAuthenticated = useAuth();
+	const displayUserInfo = useDisplayUser();
+	console.log({ auth });
+	console.log({ isAuthenticated });
 
 	const getGithubUser = async () => {
 		const response = await fetch('https://api.github.com/users/noripi10', {
@@ -51,11 +55,11 @@ const UserScreen = () => {
 				</Button>
 				{/* <Text>{JSON.stringify(user)}</Text> */}
 				<AppButton title="ログアウト" onPress={onSignOut} />
+				<AppButton title="display userInfo" onPress={displayUserInfo} />
 				<AppButton title="get github user" onPress={getGithubUser} />
 				<Image
 					source={{
-						uri:
-							'https://www.photolibrary.jp/mhd2/img18/450-200606301252262635.jpg',
+						uri: 'https://www.photolibrary.jp/mhd2/img18/450-200606301252262635.jpg',
 					}}
 					style={{ width: '100%', height: 200 }}
 					resizeMethod="auto"
