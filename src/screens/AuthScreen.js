@@ -11,8 +11,8 @@ import {
 } from '../libs/firebase';
 
 const AuthScreen = ({ navigation }) => {
-	const [email, setEmail] = useState('hrnr1177@yahoo.co.jp');
-	const [password, setPassword] = useState('62486248hs');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	const changeEmail = (text) => {
 		setEmail(text);
