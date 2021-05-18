@@ -12,7 +12,7 @@ import { useSQLite } from '../hooks/useSQLite';
 
 const SQLiteScreen = () => {
 	const [userList, setUserList] = useState([]);
-	const { executeSqlAsync, closeDatabase } = useSQLite('db.db');
+	const { db, executeSqlAsync } = useSQLite('db.db');
 
 	useEffect(() => {
 		executeSqlAsync(
@@ -21,9 +21,18 @@ const SQLiteScreen = () => {
         name text,
         age integer)`
 		);
-		executeSqlAsync(`select * from user`).then((result) => {
-			setUserList(result.rows._array);
-		});
+		// executeSqlAsync(`select * from user`).then((result) => {
+		// 	setUserList(result.rows._array);
+		// });
+
+		db.exec(
+			[{ sql: 'select * from user', args: [] }],
+			false,
+			(error, resultSet) => {
+				// console.log(resultSet[0].rows);
+				setUserList(resultSet[0].rows);
+			}
+		);
 
 		return () => {
 			// closeDatabase();

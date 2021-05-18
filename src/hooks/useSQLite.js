@@ -27,5 +27,5 @@ export const useSQLite = (name) => {
 		db.close();
 	};
 
-	return { executeSqlAsync, closeDatabase };
+	return { db, executeSqlAsync, closeDatabase };
 };
