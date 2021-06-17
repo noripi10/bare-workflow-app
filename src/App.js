@@ -1,11 +1,15 @@
 import React from 'react';
+import Route from './navigation/Route';
 // import { HoldMenuProvider } from 'react-native-hold-menu';
 import AuthProvider from './provider/AuthProvider';
 import NotificationProvider from './provider/NotificationProvider';
-import { Route } from './navigation';
-import { HomeScreen } from './screens';
+import moment from 'moment';
 
-export default function App() {
+moment.locale('ja', {
+	weekdaysShort: ['日', '月', '火', '水', '木', '金', '土'],
+});
+
+const App = () => {
 	return (
 		<AuthProvider>
 			<NotificationProvider>
@@ -13,4 +17,6 @@ export default function App() {
 			</NotificationProvider>
 		</AuthProvider>
 	);
-}
+};
+
+export default App;

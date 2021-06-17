@@ -22,7 +22,8 @@ const SQLiteScreen = () => {
         age integer)`
 		);
 		// executeSqlAsync(`select * from user`).then((result) => {
-		// 	setUserList(result.rows._array);
+		//   const { rows: { _array : dataList} } = result
+		// 	setUserList(dataList);
 		// });
 
 		db.exec(
@@ -41,7 +42,7 @@ const SQLiteScreen = () => {
 
 	const handleAddUser = async () => {
 		const userName = 'user' + Math.floor(Math.random() * 1000),
-			age = 30;
+			age = Math.floor(Math.random() * 100);
 		await executeSqlAsync(
 			`insert into user (name, age) values ("${userName}",${age});`
 		);
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
 	renderItem: {
 		width: '100%',
 		height: 30,
-		borderBottomWidth: 1,
+		borderBottomWidth: 0.5,
 		flexDirection: 'row',
 		marginVertical: 6,
 		justifyContent: 'space-between',

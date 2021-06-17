@@ -6,6 +6,7 @@ import {
 	FirebaseDbScreen,
 	SQLiteScreen,
 	UserScreen,
+	DebounceScreen,
 } from '../screens';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -65,6 +66,16 @@ const TabNavigator = () => {
 					tabBarLabel: 'MAP',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="map-marker" color={color} size={size} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="awesome"
+				component={DebounceScreen}
+				options={{
+					tabBarLabel: 'awesome',
+					tabBarIcon: ({ color, size }) => (
+						<FontAwesome name="code" color={color} size={size} />
 					),
 				}}
 			/>

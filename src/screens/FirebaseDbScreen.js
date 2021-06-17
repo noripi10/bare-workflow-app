@@ -4,13 +4,12 @@ import {
 	SafeAreaView,
 	StyleSheet,
 	FlatList,
-	TouchableOpacity,
 	Pressable,
 } from 'react-native';
 import { Divider, Text } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
-
 import { AppButton, AppInput, BackTile, IconButton } from '../components';
+import moment from 'moment';
 
 // const MenuItems = [
 // 	{ text: 'Actions', isTitle: true, onPress: () => {} },
@@ -66,6 +65,7 @@ const FirebaseDbScreen = () => {
 			<SafeAreaView style={styles.container}>
 				<Text>ユーザー情報</Text>
 				<FlatList
+					showsVerticalScrollIndicator={false}
 					data={data}
 					keyExtractor={(item) => item.id}
 					renderItem={({ item, index }) => (
@@ -79,26 +79,39 @@ const FirebaseDbScreen = () => {
 						>
 							<View
 								style={{
-									height: 76,
+									height: 80,
 									flexDirection: 'column',
 									justifyContent: 'center',
 									alignItems: 'flex-start',
 									paddingVertical: 8,
-									margin: 8,
+									margin: 10,
+									marginRight: 0,
+									width: '85%',
 								}}
 							>
 								<Text>ID：{item.id}</Text>
 								<Text>ユーザー名：{item.name}</Text>
-								<Text>登録日{item.createDate.toDate().toString()}</Text>
-								<Text>更新日{item.updateDate.toDate().toString()}</Text>
+								<Text>
+									登録日
+									{moment(item.createDate.toDate()).format(
+										'YYYY年MM月DD日(ddd) HH:mm:ss'
+									)}
+								</Text>
+								<Text>
+									更新日
+									{moment(item.updateDate.toDate()).format(
+										'YYYY年MM月DD日(ddd) HH:mm:ss'
+									)}
+								</Text>
 							</View>
 							<Pressable
 								style={{
-									backgroundColor: '#284',
+									backgroundColor: '#288',
 									width: 30,
 									heigh: 36,
 									borderRadius: 15,
 									padding: 8,
+									margin: 6,
 								}}
 								onPress={() => deleteUserHandler(item.id)}
 							>
@@ -110,13 +123,13 @@ const FirebaseDbScreen = () => {
 				/>
 				<View style={styles.inputContainer}>
 					<AppInput
-						customStyles={{ width: 200 }}
+						customStyles={{ width: 220 }}
 						title="ユーザー名"
 						value={userName}
 						onChangeText={(user) => setUserName(user)}
 					/>
 					<AppButton
-						customStyles={{ width: 80 }}
+						customStyles={{ width: 65 }}
 						title="登録"
 						onPress={regUserHandle}
 					/>
