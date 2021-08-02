@@ -6,7 +6,11 @@ export const useDebounce = (value, delay = 500) => {
 
 	useEffect(() => {
 		timer.current = setTimeout(() => {
-			setDebounceText(value);
+			if (/\d/.test(value)) {
+				setDebounceText(value);
+			} else {
+				setDebounceText(0);
+			}
 		}, delay);
 
 		return () => {
