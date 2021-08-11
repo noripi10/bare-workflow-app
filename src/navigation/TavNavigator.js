@@ -6,7 +6,8 @@ import {
 	FirebaseDbScreen,
 	SQLiteScreen,
 	UserScreen,
-	DebounceScreen,
+	DebounceGraphScreen,
+	MicroCmsScreen,
 } from '../screens';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -71,11 +72,21 @@ const TabNavigator = () => {
 			/>
 			<Tab.Screen
 				name="awesome"
-				component={DebounceScreen}
+				component={DebounceGraphScreen}
 				options={{
 					tabBarLabel: 'awesome',
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="code" color={color} size={size} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="micro-cms"
+				component={MicroCmsScreen}
+				options={{
+					tabBarLabel: 'microCMS',
+					tabBarIcon: ({ color, size }) => (
+						<FontAwesome name="sitemap" color={color} size={size} />
 					),
 				}}
 			/>

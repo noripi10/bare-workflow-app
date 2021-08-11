@@ -5,4 +5,5 @@ export { default as RegisterScreen } from './RegisterScreen';
 export { default as FirebaseDbScreen } from './FirebaseDbScreen';
 export { default as MapScreen } from './MapScreen';
 export { default as SQLiteScreen } from './SQLiteScreen';
-export { default as DebounceScreen } from './DebounceScreen';
+export { default as DebounceGraphScreen } from './DebounceGraphScreen';
+export { default as MicroCmsScreen } from './MicroCmsScreen';

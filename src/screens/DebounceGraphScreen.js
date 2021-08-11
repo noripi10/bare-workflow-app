@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import {
+	View,
+	StyleSheet,
+	Dimensions,
+	KeyboardAvoidingView,
+} from 'react-native';
 import { Text, useTheme, TextInput } from 'react-native-paper';
 import { BackTile } from '../components';
 import { LineChart } from 'react-native-chart-kit';
-
+import {
+	KeyboardAccessoryNavigation,
+	KeyboardAccessoryView,
+} from 'react-native-keyboard-accessory';
 import { useDebounce } from '../hooks/useDebounce';
 
-const DebounceScreen = () => {
+const DebounceGraphScreen = () => {
 	const { dark } = useTheme();
 	const parentRef = React.createRef();
 
@@ -40,11 +48,13 @@ const DebounceScreen = () => {
 	};
 
 	useEffect(() => {
+		// forwardRefのサンプル
 		// console.log(parentRef.current.props.autoCapitalize);
 	}, []);
 
 	return (
-		<BackTile colors={['#135', '#219']}>
+		<>
+			{/* <BackTile colors={['#135', '#219']}> */}
 			<View style={styles.container}>
 				<LineChart
 					data={{
@@ -52,12 +62,12 @@ const DebounceScreen = () => {
 						datasets: [
 							{
 								data: [
-									debounceText1,
-									debounceText2,
-									debounceText3,
-									debounceText4,
-									debounceText5,
-									debounceText6,
+									currentText1,
+									currentText2,
+									currentText3,
+									currentText4,
+									currentText5,
+									currentText6,
 								],
 							},
 						],
@@ -87,7 +97,7 @@ const DebounceScreen = () => {
 					style={{
 						marginVertical: 8,
 						marginBottom: 20,
-						borderRadius: 8,
+						borderRadius: 4,
 						padding: 2,
 					}}
 				/>
@@ -96,13 +106,14 @@ const DebounceScreen = () => {
 						type="outlined"
 						style={styles.textInput}
 						label="January"
+						keyboardType="numeric"
 						value={currentText1}
 						onChangeText={(text) => changeText(text, 1)}
 					/>
 					<View>
 						<Text>January</Text>
 						<Text
-							style={[styles.text, { borderColor: dark ? '#aaa' : '#f000' }]}
+							style={[styles.text, { borderColor: dark ? '#aaa' : '#000' }]}
 						>
 							{debounceText1}
 						</Text>
@@ -113,13 +124,14 @@ const DebounceScreen = () => {
 						type="outlined"
 						style={styles.textInput}
 						label="February"
+						keyboardType="numeric"
 						value={currentText2}
 						onChangeText={(text) => changeText(text, 2)}
 					/>
 					<View>
 						<Text>February</Text>
 						<Text
-							style={[styles.text, { borderColor: dark ? '#aaa' : '#f000' }]}
+							style={[styles.text, { borderColor: dark ? '#aaa' : '#000' }]}
 						>
 							{debounceText2}
 						</Text>
@@ -130,13 +142,14 @@ const DebounceScreen = () => {
 						type="outlined"
 						style={styles.textInput}
 						label="March"
+						keyboardType="numeric"
 						value={currentText3}
 						onChangeText={(text) => changeText(text, 3)}
 					/>
 					<View>
 						<Text>March</Text>
 						<Text
-							style={[styles.text, { borderColor: dark ? '#aaa' : '#f000' }]}
+							style={[styles.text, { borderColor: dark ? '#aaa' : '#000' }]}
 						>
 							{debounceText3}
 						</Text>
@@ -147,13 +160,14 @@ const DebounceScreen = () => {
 						type="outlined"
 						style={styles.textInput}
 						label="April"
+						keyboardType="numeric"
 						value={currentText4}
 						onChangeText={(text) => changeText(text, 4)}
 					/>
 					<View>
 						<Text>April</Text>
 						<Text
-							style={[styles.text, { borderColor: dark ? '#aaa' : '#f000' }]}
+							style={[styles.text, { borderColor: dark ? '#aaa' : '#000' }]}
 						>
 							{debounceText4}
 						</Text>
@@ -164,13 +178,14 @@ const DebounceScreen = () => {
 						type="outlined"
 						style={styles.textInput}
 						label="May"
+						keyboardType="numeric"
 						value={currentText5}
 						onChangeText={(text) => changeText(text, 5)}
 					/>
 					<View>
 						<Text>May</Text>
 						<Text
-							style={[styles.text, { borderColor: dark ? '#aaa' : '#f000' }]}
+							style={[styles.text, { borderColor: dark ? '#aaa' : '#000' }]}
 						>
 							{debounceText5}
 						</Text>
@@ -181,13 +196,14 @@ const DebounceScreen = () => {
 						type="outlined"
 						style={styles.textInput}
 						label="June"
+						// keyboardType="numeric"
 						value={currentText6}
 						onChangeText={(text) => changeText(text, 6)}
 					/>
 					<View>
 						<Text>June</Text>
 						<Text
-							style={[styles.text, { borderColor: dark ? '#aaa' : '#f000' }]}
+							style={[styles.text, { borderColor: dark ? '#aaa' : '#000' }]}
 						>
 							{debounceText6}
 						</Text>
@@ -201,7 +217,14 @@ const DebounceScreen = () => {
 					value={currentText}
 					onChangeText={changeText}
 				/> */}
-		</BackTile>
+			{/* </BackTile> */}
+			<KeyboardAccessoryNavigation
+				doneButtonTitle="完了"
+				nextHidden
+				previousHidden
+				androidAdjustResize
+			/>
+		</>
 	);
 };
 
@@ -233,4 +256,4 @@ const styles = StyleSheet.create({
 		marginVertical: 3,
 	},
 });
-export default DebounceScreen;
+export default DebounceGraphScreen;
